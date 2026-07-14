@@ -1,19 +1,21 @@
 # HireSense AI
 
-HireSense AI is an AI-powered resume analysis platform that helps job seekers improve their resumes using Large Language Models (LLMs).
+HireSense AI is an AI-powered Resume Analysis platform built using Flask and Groq LLM. It analyzes resumes against job descriptions and provides intelligent feedback to help candidates improve their resumes and interview preparation.
 
 ## Features
 
 - Resume Score
 - ATS Score
-- Resume Match Score
+- Resume Match Analysis
 - Technical Strengths & Weaknesses
 - Missing Skills Detection
-- AI Project Feedback
 - Career Role Recommendation
-- Resume Summary Generator
-- Professional Cover Letter Generator
-- Interview Questions Generator
+- AI Project Feedback
+- Interview Readiness
+- AI Interview Questions
+- AI Interview Answers
+- AI Cover Letter Generator
+- Resume Summary
 - Analytics Dashboard
 
 ## Tech Stack
@@ -23,17 +25,23 @@ HireSense AI is an AI-powered resume analysis platform that helps job seekers im
 - HTML
 - CSS
 - JavaScript
-- Groq API (LLM)
+- Groq API
 - Scikit-learn
+- PyMuPDF
 
-## Run Locally
+## Installation
 
 ```bash
+git clone https://github.com/24R05A0521/HireSense-AI.git
+
+cd HireSense-AI
+
 pip install -r requirements.txt
+
 python app.py
 ```
 
-Then open:
+Open your browser and visit:
 
 ```
 http://127.0.0.1:5000

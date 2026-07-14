@@ -3,3 +3,4 @@ PyMuPDF
 requests
 scikit-learn
 reportlab
+gunicorn

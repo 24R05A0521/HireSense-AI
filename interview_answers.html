@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>HireSense AI - Interview Answers</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>💬 HireSense AI</h1>
+
+    <h2>AI Interview Answer Generator</h2>
+
+    <div class="report" id="answerContent">
+
+        <div class="section">
+
+            <h3>Interview Questions with Sample Answers</h3>
+
+            <div class="interview">
+
+                <pre style="white-space: pre-wrap; font-family: inherit;">{{ answers }}</pre>
+
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="footer-btn">
+
+            <button
+                class="button"
+                onclick="copyAnswers()">
+
+                📋 Copy Answers
+
+            </button>
+
+            &nbsp;&nbsp;
+
+            <a href="/"
+               class="button">
+
+                🔍 Analyze Another Resume
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function copyAnswers(){
+
+    const text =
+        document.getElementById("answerContent").innerText;
+
+    navigator.clipboard.writeText(text);
+
+    alert("Interview Answers copied successfully!");
+
+}
+
+</script>
+
+</body>
+
+</html>

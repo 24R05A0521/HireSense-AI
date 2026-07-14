@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HireSense AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🤖 HireSense AI</h1>
+
+    <h2>
+        AI Powered Resume & ATS Analyzer
+    </h2>
+
+    <div class="report">
+
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+
+            <div class="section">
+
+                <h3>📄 Upload Your Resume</h3>
+
+                <p style="margin-bottom:15px;color:#666;">
+                    Upload your resume in PDF format to receive an AI-powered
+                    analysis, ATS score, strengths,weaknesses and personalized
+                    improvement suggestions.
+                </p>
+                <input
+                    type="file"
+                    name="resume"
+                    accept=".pdf"
+                    required>
+
+            </div>
+
+            <hr>
+
+            <div class="section">
+
+                <h3>💼 Job Description (Optional)</h3>
+
+                <p style="margin-bottom:15px;color:#666;">
+                    Paste a job description to compare your resume against the
+                    required skills and calculate a Resume Match Score.
+                </p>
+
+                <textarea
+                    name="job_description"
+                    placeholder="Example:
+
+Python Developer
+
+Skills Required:
+Python
+Flask
+SQL
+REST APIs
+Git
+Docker
+HTML
+CSS
+JavaScript"></textarea>
+
+            </div>
+
+            <div class="footer-btn">
+
+                <button type="submit">
+
+                    🚀 Analyze Resume
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- Loading Screen -->
+
+<div id="loadingScreen" class="loading-overlay">
+
+    <div class="loader-box">
+
+        <div class="spinner"></div>
+
+        <h2> HireSense AI</h2>
+
+        <p id="loadingText">
+
+            Uploading Resume...
+
+        </p>
+
+    </div>
+
+</div>
+
+<script>
+
+const loadingMessages = [
+
+    "📄 Uploading Resume...",
+
+    "AI is analyzing your resume...",
+
+    "📊 Calculating Resume Score...",
+
+    "🎯 Calculating ATS Score...",
+
+    "💡 Generating Suggestions...",
+
+    "🎤 Preparing Interview Questions...",
+
+    "✅ Almost Done..."
+
+];
+
+let index = 0;
+
+const form = document.querySelector("form");
+
+form.addEventListener("submit", function(){
+
+    document.getElementById("loadingScreen").style.display = "flex";
+
+    const text = document.getElementById("loadingText");
+
+    setInterval(function(){
+
+        if(index < loadingMessages.length){
+
+            text.innerHTML = loadingMessages[index];
+
+            index++;
+
+        }
+
+    },1200);
+
+});
+
+</script>
+
+</body>
+
+</html>

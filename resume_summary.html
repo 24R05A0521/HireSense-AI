@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>HireSense AI - Resume Summary</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📝 HireSense AI</h1>
+
+    <h2>Professional Resume Summary</h2>
+
+    <div class="report" id="summaryContent">
+
+        <div class="section">
+
+            <h3>ATS Optimized Summary</h3>
+
+            <div class="interview">
+
+                {{ summary }}
+
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="footer-btn">
+
+            <button
+                class="button"
+                onclick="copySummary()">
+
+                📋 Copy Summary
+
+            </button>
+
+            &nbsp;&nbsp;
+
+            <a href="/"
+               class="button">
+
+                🔍 Analyze Another Resume
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function copySummary(){
+
+    const text =
+        document.getElementById("summaryContent").innerText;
+
+    navigator.clipboard.writeText(text);
+
+    alert("Resume Summary copied successfully!");
+
+}
+
+</script>
+
+</body>
+
+</html>

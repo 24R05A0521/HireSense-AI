@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>HireSense AI - Cover Letter</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📄 HireSense AI</h1>
+
+    <h2>Professional Cover Letter</h2>
+
+    <div class="report" id="coverLetterContent">
+
+        <div class="section">
+
+            <h3>Generated Cover Letter</h3>
+
+            <div class="interview">
+
+                {{ letter }}
+
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="footer-btn">
+
+            <button
+                class="button"
+                onclick="copyLetter()">
+
+                📋 Copy Cover Letter
+
+            </button>
+
+            &nbsp;&nbsp;
+
+            <a href="/"
+               class="button">
+
+                🔍 Analyze Another Resume
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function copyLetter(){
+
+    const text =
+        document.getElementById("coverLetterContent").innerText;
+
+    navigator.clipboard.writeText(text);
+
+    alert("Cover Letter copied successfully!");
+
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HireSense AI - Report</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📊 HireSense AI</h1>
+    <h2>Resume Analysis Report</h2>
+
+    <div class="report">
+
+        <!-- Score Cards -->
+        <div class="score-container">
+
+            <div class="score-card resume">
+                <h3>Resume Score</h3>
+                <div class="score">
+                    {{ analysis.resume_score }}/100
+                </div>
+            </div>
+
+            <div class="score-card ats">
+                <h3>ATS Score</h3>
+                <div class="score">
+                    {{ analysis.ats_score }}/100
+                </div>
+            </div>
+
+            <div class="score-card match">
+                <h3>Resume Match</h3>
+                <div class="score">
+                    {{ analysis.resume_match }}%
+                </div>
+            </div>
+
+        </div>
+
+        <hr>
+        <div class="section">
+            <h3>🎯 Best Career Match</h3>
+            <div class="interview">
+                <h2 style="color:#4CAF50; margin-bottom:10px;">
+                    {{ analysis.recommended_role }}
+                </h2>
+
+                <p>
+                    {{ analysis.role_reason }}
+
+                </p>
+
+            </div>
+
+        </div>
+        <hr>
+
+        <!-- ATS Keyword Analysis -->
+        <h2 class="section-title">
+            ATS Keyword Analysis
+        </h2>
+
+        <div class="skills-container">
+
+            <div class="skill-box">
+                <h3>✅ Matched Skills</h3>
+
+                <ul>
+                    {% for skill in analysis.matched_skills %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                </ul>
+
+            </div>
+
+            <div class="skill-box">
+
+                <h3>❌ Missing Skills</h3>
+
+                <ul>
+                    {% for skill in analysis.missing_skills_jd %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                </ul>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <!-- Strengths -->
+        <div class="section">
+
+            <h3>✅ Technical Strengths</h3>
+
+            <ul>
+                {% for item in analysis.strengths %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+
+        </div>
+
+        <!-- Weaknesses -->
+        <div class="section">
+
+            <h3>⚠ Weaknesses</h3>
+
+            <ul>
+                {% for item in analysis.weaknesses %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+
+        </div>
+
+        <!-- Missing Skills -->
+        <div class="section">
+
+            <h3>❌ Missing Skills</h3>
+
+            <ul>
+                {% for item in analysis.missing_skills %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+
+        </div>
+
+        <!-- Project Feedback -->
+        <div class="section">
+
+            <h3>📁 Project Feedback</h3>
+
+            <ul>
+                {% for item in analysis.project_feedback %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+
+        </div>
+
+        <!-- Interview Readiness -->
+        <div class="section">
+
+            <h3>🎤 Interview Readiness</h3>
+
+            <div class="interview">
+                {{ analysis.interview_readiness }}
+            </div>
+
+        </div>
+
+        <!-- Suggestions -->
+        <div class="section">
+
+            <h3>💡 Suggestions</h3>
+
+            <ol>
+                {% for item in analysis.suggestions %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ol>
+
+        </div>
+
+        <!-- Buttons -->
+        <div class="footer-btn">
+
+            <div class="button-row">
+                
+                <a href="/dashboard" class="button">
+                    📊 Analytics Dashboard
+                </a>
+
+                <a href="/interview_answers" class="button">
+                    💬 Interview Answers
+                </a>
+                
+                <a href="/cover_letter" class="button">
+                    📄 Cover Letter
+                </a>
+                
+                <a href="/resume_summary" class="button">
+                    📝 Resume Summary
+                </a>
+                
+                <a href="/interview_questions" class="button">
+                    🎤 Interview Questions
+                </a>
+                
+                <a href="/" class="button">
+                    🔍 Analyze Another Resume
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

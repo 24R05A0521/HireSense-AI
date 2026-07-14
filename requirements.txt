@@ -1,0 +1,5 @@
+Flask
+PyMuPDF
+requests
+scikit-learn
+reportlab

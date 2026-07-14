@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HireSense AI - Analytics Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📊 HireSense AI</h1>
+
+    <h2>Analytics Dashboard</h2>
+
+    <div class="report">
+
+        <div class="score-container">
+
+            <div class="score-card resume">
+
+                <h3>Resume Score</h3>
+
+                <div class="score">
+
+                    {{ analysis.resume_score }}/100
+
+                </div>
+
+            </div>
+
+            <div class="score-card ats">
+
+                <h3>ATS Score</h3>
+
+                <div class="score">
+
+                    {{ analysis.ats_score }}/100
+
+                </div>
+
+            </div>
+
+            <div class="score-card match">
+
+                <h3>Resume Match</h3>
+
+                <div class="score">
+
+                    {{ analysis.resume_match }}%
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="section">
+
+            <h3>📈 Resume Analytics</h3>
+
+            <canvas id="scoreChart"
+                    height="120"></canvas>
+
+        </div>
+
+        <hr>
+
+        <div class="section">
+
+            <h3>🏆 Overall Performance</h3>
+
+            <div class="interview" id="performanceBox">
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="section">
+
+            <h3>💡 AI Recommendation</h3>
+
+            <div class="interview" id="recommendationBox">
+
+            </div>
+
+        </div>
+
+        <div class="footer-btn">
+
+            <a href="/"
+               class="button">
+
+                🔍 Analyze Another Resume
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+const resumeScore = Number("{{ analysis.resume_score }}");
+const atsScore = Number("{{ analysis.ats_score }}");
+const resumeMatch = Number("{{ analysis.resume_match }}");
+
+const ctx = document.getElementById('scoreChart');
+
+new Chart(ctx, {
+
+    type: 'bar',
+
+    data: {
+
+        labels: [
+
+            'Resume Score',
+
+            'ATS Score',
+
+            'Resume Match'
+
+        ],
+
+        datasets: [{
+
+            label: 'Score',
+
+            data: [
+
+                resumeScore,
+
+                atsScore,
+
+                resumeMatch
+
+            ],
+
+            backgroundColor: [
+
+                '#2563eb',
+
+                '#16a34a',
+
+                '#f59e0b'
+
+            ],
+
+            borderRadius: 10
+
+        }]
+
+    },
+
+    options: {
+
+        responsive: true,
+
+        plugins: {
+
+            legend: {
+
+                display: false
+
+            }
+
+        },
+
+        scales: {
+
+            y: {
+
+                beginAtZero: true,
+
+                max: 100
+
+            }
+
+        }
+
+    }
+
+});
+
+const average = Math.round(
+
+    (resumeScore + atsScore + resumeMatch) / 3
+
+);
+
+let performance = "";
+
+let recommendation = "";
+
+if (average >= 90){
+
+    performance = "🌟 Outstanding";
+
+    recommendation = "Excellent resume. Continue adding measurable achievements and keep your skills updated.";
+
+}
+
+else if (average >= 80){
+
+    performance = "🏆 Excellent";
+
+    recommendation = "Strong resume. Minor improvements in projects and technical keywords can make it even better.";
+
+}
+
+else if (average >= 70){
+
+    performance = "👍 Good";
+
+    recommendation = "Your resume is good. Improve ATS keywords, quantify achievements and strengthen project descriptions.";
+
+}
+
+else{
+
+    performance = "📈 Needs Improvement";
+
+    recommendation = "Improve your resume structure, technical skills section, project descriptions and ATS keywords.";
+
+}
+
+document.getElementById("performanceBox").innerHTML =
+
+"<h2 style='color:#1e3a8a; margin:0;'>" + performance + "</h2>";
+
+document.getElementById("recommendationBox").innerHTML =
+
+recommendation;
+
+</script>
+
+</body>
+
+</html>
